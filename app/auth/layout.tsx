@@ -16,17 +16,14 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   }, [controls]);
 
   return (
-    <main className="relative min-h-screen overflow-hidden grid grid-cols-1 lg:grid-cols-2 p-4">
-      <div className="absolute w-full flex justify-end items-center md:p-4 p-2  top-0">
-        <ModeToggle />
-      </div>
+    <main className="relative w-full h-full grid grid-cols-1 lg:grid-cols-2 p-4 place-content-center lg:place-content-stretch">
       <motion.div initial={{ opacity: 0, y: 50 }} animate={controls}>
         <WelcomeSection />
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        className="flex justify-center items-center"
+        className="flex justify-center items-center "
       >
         {children}
       </motion.div>

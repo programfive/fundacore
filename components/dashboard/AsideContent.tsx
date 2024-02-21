@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { HiHome } from "react-icons/hi2";
 import { FaChildren, FaUsers } from "react-icons/fa6";
+import { FaUserCog } from "react-icons/fa";
 const links = [
   {
     name: "dashboard",
@@ -20,9 +21,16 @@ const links = [
     href: "/dashboard/children",
     icon: <FaChildren className="w-6 h-6 " />,
   },
+  {
+    name: "Setting",
+    href: "/dashboard/setting",
+    icon: <FaUserCog className="w-6 h-6 " />,
+  },
 ];
+
 export function AsideContent({ toggleOpen }: any) {
   const pathname = usePathname();
+
   return (
     <motion.div
       variants={{
@@ -72,7 +80,7 @@ export function AsideContent({ toggleOpen }: any) {
             whileTap={{ scale: 0.95 }}
             key={index}
             className={cn(
-              "flex gap-3 [--y-closed:50%] text-gray-600 dark:text-electric-violet-50 hover:text-electric-violet-50 [--opacity-closed:0%] lg:[--opacity-closed:100%] lg:[--y-closed:0%] px-2 items-center rounded py-2.5  hover:bg-primary",
+              "flex gap-3 [--y-closed:50%] outline-none text-gray-600 dark:text-electric-violet-50 hover:text-electric-violet-50 [--opacity-closed:0%] lg:[--opacity-closed:100%] lg:[--y-closed:0%] px-2 items-center rounded py-2.5  hover:bg-primary",
               pathname === link.href
                 ? "bg-primary text-electric-violet-50"
                 : null

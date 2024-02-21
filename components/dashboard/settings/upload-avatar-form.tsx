@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useState, useTransition } from "react";
+import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Upload } from "@/components/ui/upload";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
@@ -18,14 +18,15 @@ import { toast } from "sonner";
 import { useAvatarStore } from "@/store/avatar";
 import { createAvatar } from "@/actions/upload-avatar";
 import { AvatarSchema } from "@/schemas";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { FaUser } from "react-icons/fa6";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { upload } from "@/services/upload";
-
+import { Avatar } from "@/components/ui/avatar";
+import { AvatarFallbackUser } from "@/components/avatar-fallback";
+import { AvatarUser } from "@/components/avatar-user";
 export function UploadAvatarForm() {
   const [isPending, startTransition] = useTransition();
-  const { urlImage, updateUrlImage } = useAvatarStore();
+  const {  updateUrlImage } = useAvatarStore();
+
   const form = useForm<z.infer<typeof AvatarSchema>>({
     resolver: zodResolver(AvatarSchema),
     defaultValues: {
@@ -36,7 +37,7 @@ export function UploadAvatarForm() {
     const file = values.avatar[0];
     startTransition(async () => {
       const fileData = await upload(file);
-      const urlImage = fileData.secure_url;
+      const urlImage = fileData?.secure_url;
       if (!urlImage) {
         toast.error("An error has occurred!");
         return;
@@ -53,7 +54,7 @@ export function UploadAvatarForm() {
     });
   };
   return (
-    <Card className="max-w-[400px] w-full flex-1">
+    <Card className=" w-full">
       <CardHeader>
         <h2 className="text-2xl font-semibold text-gray-700 dark:text-electric-violet-50">
           Your Photo
@@ -61,13 +62,11 @@ export function UploadAvatarForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="space-y-4 " onSubmit={form.handleSubmit(onSubmit)}>
             <div className="flex items-center gap-4">
               <Avatar>
-                <AvatarImage className="object-cover" src={urlImage} />
-                <AvatarFallback className="bg-blue-500">
-                  <FaUser className="text-white" />
-                </AvatarFallback>
+                <AvatarUser />
+                <AvatarFallbackUser />
               </Avatar>
               <FormLabel>Edit your photo</FormLabel>
             </div>

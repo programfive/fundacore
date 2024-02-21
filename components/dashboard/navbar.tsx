@@ -10,7 +10,7 @@ export function NavBar() {
 
   return (
     <>
-      <header className="flex justify-between text-electric-violet-50">
+      <header className="flex justify-between lg:pt-6 text-electric-violet-50">
         <nav>
           <ol className="flex flex-wrap pt-1 bg-transparent rounded-lg sm:mr-16">
             <li className="text-sm leading-normal">

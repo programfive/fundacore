@@ -69,7 +69,7 @@ export const InformationForm = () => {
   };
 
   return (
-    <Card className="max-w-[600px] h-auto flex-1">
+    <Card className=" h-auto">
       <CardHeader>
         <h2 className="text-2xl font-semibold text-gray-700 dark:text-electric-violet-50">
           Personal Information

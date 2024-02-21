@@ -9,9 +9,9 @@ function Layout({ children }: { children: React.ReactNode }) {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
-    <div className="relative p-4 md:p-6 lg:px-12  overflow-x-hidden ">
-      <div className="absolute z-10 inset-0 h-72 w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-violet-500 to-electric-violet-600  dark:hidden "></div>
-      <div className=" lg:hidden flex justify-between items-center">
+    <div className="relative ">
+      <div className="absolute z-10  inset-0 h-72 w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-electric-violet-500 to-electric-violet-600  dark:hidden "></div>
+      <div className=" p-4 lg:hidden flex justify-between items-center">
         <Logo className="w-auto h-6 z-30 text-electric-violet-50" />
         <motion.div
           initial={false}
@@ -22,9 +22,9 @@ function Layout({ children }: { children: React.ReactNode }) {
         </motion.div>
       </div>
       <Shadow isOpen={isOpen} toggleOpen={toggleOpen} />
-      <Aside isOpen={isOpen} toggleOpen={toggleOpen} />
-      <main className=" lg:ml-72 ">
-        <div className="relative z-30">
+      <main className="px-4 lg:p-4 h-full">
+        <Aside isOpen={isOpen} toggleOpen={toggleOpen} />
+        <div className="relative z-30 lg:pl-72  max-w-[92.5rem]    ">
           <NavBar />
           <div className="mt-5">{children}</div>
         </div>

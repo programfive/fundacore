@@ -1,5 +1,5 @@
-function Children() {
-  return <h1>Children</h1>;
+function ChildrenPage() {
+  return <h1>ChildrenPage</h1>;
 }
 
-export default Children;
+export default ChildrenPage;

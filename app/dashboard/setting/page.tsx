@@ -1,13 +1,14 @@
+"use client";
 import { InformationForm } from "@/components/dashboard/settings/information-form";
 import { UploadAvatarForm } from "@/components/dashboard/settings/upload-avatar-form";
-
-function Setting() {
+import { motion } from "framer-motion";
+function SettingPage() {
   return (
-    <section className="flex gap-4 w-full flex-col items-center sm:flex-row  sm:items-start  ">
+    <motion.section className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
       <InformationForm />
       <UploadAvatarForm />
-    </section>
+    </motion.section>
   );
 }
 
-export default Setting;
+export default SettingPage;

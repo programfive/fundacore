@@ -6,6 +6,8 @@ import "./globals.css";
 import { inter } from '@/fonts';
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from '@/lib/utils';
+import { SwrProvider } from '@/providers/swr-provider';
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 export const metadata: Metadata = {
   title: "Fundacore",
@@ -22,9 +24,10 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="en">
+        
         <body
           className={cn(
-            "bg-background w-screen overflow-x-hidden",
+            "bg-background w-screen overflow-x-hidden min-h-screen ",
             inter.className
           )}
         >
@@ -35,7 +38,9 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <SwrProvider>
+              {children}
+              </SwrProvider>
           </ThemeProvider>
         </body>
       </html>

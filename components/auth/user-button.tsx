@@ -10,32 +10,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { Avatar } from "@/components/ui/avatar";
 import { LogoutButton } from "@/components/auth/logout-button";
 import Link from "next/link";
-import { useAvatarStore } from "@/store/avatar";
-import { useEffect } from "react";
+import { AvatarFallbackUser } from "../avatar-fallback";
+import { AvatarUser } from "../avatar-user";
 
 export const UserButton = () => {
-  const { urlImage, updateUrlImage } = useAvatarStore();
-  const user = useCurrentUser();
-  const userImage = user?.image || "";
-  useEffect(() => {
-    if (userImage) {
-      updateUrlImage(userImage);
-    } else {
-      updateUrlImage(urlImage);
-    }
-  }, []);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="outline-none ">
         <Avatar>
-          <AvatarImage className="object-cover" src={urlImage} />
-          <AvatarFallback className="bg-blue-500">
-            <FaUser className="text-white" />
-          </AvatarFallback>
+          <AvatarUser />
+          <AvatarFallbackUser />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40 mt-2" align="end">
@@ -45,15 +32,6 @@ export const UserButton = () => {
             Logout
           </DropdownMenuItem>
         </LogoutButton>
-        <DropdownMenuItem>
-          <Link
-            href="/dashboard/profile"
-            className=" flex items-center gap-2  w-full"
-          >
-            <FaRegUser className="h-4 w-4" />
-            <span> Profile</span>
-          </Link>
-        </DropdownMenuItem>
         <DropdownMenuItem>
           <Link
             href="/dashboard/setting"

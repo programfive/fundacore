@@ -29,7 +29,6 @@ model User {
 
 model Account {
   id                 String  @id @default(cuid())
-  userId             String
   type               String
   provider           String
   providerAccountId  String
@@ -40,7 +39,7 @@ model Account {
   scope              String?
   id_token           String?  @db.Text
   session_state      String?
-
+  userId             String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
